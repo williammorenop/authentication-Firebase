@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity
 
     Button login;
     Button create;
+    Button boton;
     TextView mUser;
     TextView mPassword;
 
@@ -36,6 +37,15 @@ public class LoginActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        boton = findViewById(R.id.button);
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(),MapActivity.class));
+            }
+        });
+
         login = findViewById(R.id.Login);
         mUser = findViewById(R.id.mUser);
         mPassword = findViewById(R.id.mPassword);

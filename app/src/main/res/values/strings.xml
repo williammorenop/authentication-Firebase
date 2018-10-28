@@ -8,4 +8,11 @@
     <string name="Email">Correo</string>
     <string name="Password">Contraseña</string>
     <string name="Repassword">Repita Contraseña</string>
+    <string name="title_activity_map">AppMap</string>
+    <string name="appmap">AppMap</string>
+    <string name="Ir">Ir...</string>
+    <string name="distancia">Distancia: </string>
+    <string name="Nombre">Nombre:</string>
+    <string name="Precio">Precio:</string>
+    <string name="Calificacion">Calificación</string>
 </resources>
