@@ -110,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity
         String email = mUser.getText().toString();
         if (TextUtils.isEmpty(email) || !isEmailValid(email))
         {
-            mUser.setError("Required.");
+            mUser.setError("Requerido.");
             valid = false;
         }
         else
@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity
         }
         if (TextUtils.isEmpty(password))
         {
-            mPassword.setError("Required.");
+            mPassword.setError("Requerido.");
 
             valid = false;
         }
@@ -144,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity
 
         if (TextUtils.isEmpty(name))
         {
-            mUserName.setError("Required.");
+            mUserName.setError("Requerido.");
             valid = false;
         }
         else
@@ -155,7 +155,7 @@ public class RegisterActivity extends AppCompatActivity
 
         if (TextUtils.isEmpty(lastname))
         {
-            mUserLastName.setError("Required.");
+            mUserLastName.setError("Requerido.");
             valid = false;
         }
         else
