@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AndroidAuthentication</string>
+    <string name="auth_failed">ERROR</string>
+    <string name="SinOut">Cerrar Sesion</string>
+    <string name="Configuracion">Configuración</string>
+    <string name="Name">Nombre</string>
+    <string name="Lastmame">Apellido</string>
+    <string name="Email">Correo</string>
+    <string name="Password">Contraseña</string>
+    <string name="Repassword">Repita Contraseña</string>
 </resources>
