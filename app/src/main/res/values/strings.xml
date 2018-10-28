@@ -15,4 +15,6 @@
     <string name="Nombre">Nombre:</string>
     <string name="Precio">Precio:</string>
     <string name="Calificacion">Calificación</string>
+    <string name="menuitem1">Claro</string>
+    <string name="menuitem2">Oscuro</string>
 </resources>

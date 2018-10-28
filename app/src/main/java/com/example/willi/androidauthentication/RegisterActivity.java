@@ -81,7 +81,8 @@ public class RegisterActivity extends AppCompatActivity
                                             upcrb.setDisplayName(mUserName.getText().toString() + " " + mUserLastName.getText().toString());
                                             //upcrb.setPhotoUri(Uri.parse("path/to/pic"));//fake uri, real one coming soon
                                             user.updateProfile(upcrb.build());
-                                            startActivity(new Intent(RegisterActivity.this, LoginSuccessActivity.class)); //o en el listener
+                                            //startActivity(new Intent(RegisterActivity.this, LoginSuccessActivity.class)); //o en el listener
+                                            startActivity(new Intent(RegisterActivity.this, MapActivity.class)); //o en el listener
                                         }
                                     }
                                     if (!task.isSuccessful())

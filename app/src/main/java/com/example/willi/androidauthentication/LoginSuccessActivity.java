@@ -54,9 +54,15 @@ public class LoginSuccessActivity extends AppCompatActivity
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
-        else if (itemClicked == R.id.Configuracion)
+        else if (itemClicked == R.id.Claro)
         {
-//Abrir actividad para configuración etc
+            //mMap.setMapStyle(MapStyleOptions
+                   // .loadRawResourceStyle(this, R.raw.dia));
+        }
+        else if (itemClicked == R.id.Oscuro)
+        {
+           // mMap.setMapStyle(MapStyleOptions
+                  //  .loadRawResourceStyle(this, R.raw.noche));
         }
         return super.onOptionsItemSelected(item);
     }

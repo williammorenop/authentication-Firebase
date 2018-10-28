@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity
 
     Button login;
     Button create;
-    Button boton;
     TextView mUser;
     TextView mPassword;
 
@@ -38,13 +37,7 @@ public class LoginActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        boton = findViewById(R.id.button);
-        boton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(),MapActivity.class));
-            }
-        });
+
 
         login = findViewById(R.id.Login);
         mUser = findViewById(R.id.mUser);
@@ -81,7 +74,8 @@ public class LoginActivity extends AppCompatActivity
                 {
 // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    startActivity(new Intent(LoginActivity.this, LoginSuccessActivity.class));
+                   // startActivity(new Intent(LoginActivity.this, LoginSuccessActivity.class));
+                    startActivity(new Intent(LoginActivity.this, MapActivity.class));
                 }
                 else
                 {

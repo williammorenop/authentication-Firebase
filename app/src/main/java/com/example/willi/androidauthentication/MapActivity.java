@@ -15,8 +15,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -56,6 +59,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.maps.android.PolyUtil;
 
 import org.json.JSONArray;
@@ -67,7 +71,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -87,6 +91,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private EditText mAddress;
     private TextView distance;
 
+    //Autenticacion
+    //Button btSignOut;
+    private FirebaseAuth mAuth;
+
+
 
     //UNA SOLA VEZ
     private FusedLocationProviderClient mFusedLocationClient;
@@ -101,6 +110,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        //autenticacion
+        mAuth = FirebaseAuth.getInstance();
 
         mAddress = findViewById(R.id.mAddress);
         distance = findViewById(R.id.distancia);
@@ -261,6 +273,38 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             }
         });
     }
+////////////////////////////////////////////////MENU
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menulogout, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int itemClicked = item.getItemId();
+        if(itemClicked == R.id.singout)
+        {
+            mAuth.signOut();
+            Intent intent = new Intent(MapActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+        else if (itemClicked == R.id.Claro)
+        {
+            mMap.setMapStyle(MapStyleOptions
+                    .loadRawResourceStyle(this, R.raw.dia));
+        }
+        else if (itemClicked == R.id.Oscuro)
+        {
+            mMap.setMapStyle(MapStyleOptions
+                    .loadRawResourceStyle(this, R.raw.noche));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    ///////////////////////////////////////////////////////////////MENU-
 
     private void trazarRuta(JSONObject jso) {
 
