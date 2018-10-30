@@ -52,7 +52,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-//import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -95,7 +95,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
     private JSONObject jso;
-    //private Polyline polylinetemp;
+    private Polyline polylinetemp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -255,7 +255,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     {
                         try
                         {
-                            List<Address> addresses = mGeocoder.getFromLocationName(addressString, 2, ABAJOIZQLAT, ABAJOIZQLONG, ARRIBADERLAT, ARRIBADERLONG);
+                            List<Address> addresses = mGeocoder.getFromLocationName(addressString, 1,ABAJOIZQLAT, ABAJOIZQLONG, ARRIBADERLAT, ARRIBADERLONG);
 
                             if (addresses != null && !addresses.isEmpty())
                             {
@@ -265,7 +265,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 if (mMap != null)
                                 {
                                     MarkerOptions myMarkerOptions = new MarkerOptions();
-                                    myMarkerOptions.title("Ubicación encontrada");
+                                    myMarkerOptions.title(addressString);
                                     myMarkerOptions.position(position);
                                     myMarkerOptions.snippet("                       ");
                                     myMarkerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.navpin32));
@@ -291,7 +291,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                     distance.setText(s + " " + String.valueOf(distancepoint(newmark.getPosition().latitude,
                                             newmark.getPosition().longitude, position.latitude, position.longitude)) + " Km");
 //////////////////PETICION RUTA
-                                    String url = "https://maps.googleapis.com/maps/api/directions/json?origin="+newmark.getPosition().latitude+","+newmark.getPosition().longitude+"&destination="+lastmark.getPosition().latitude+","+lastmark.getPosition().longitude+ "&key=" + "AIzaSyCD3_5vFwy-QFyFsomsi-WMxUUUcW5TtQQ";
+                                    //String url = "https://maps.googleapis.com/maps/api/directions/json?origin="+newmark.getPosition().latitude+","+newmark.getPosition().longitude+"&destination="+lastmark.getPosition().latitude+","+lastmark.getPosition().longitude+ "&key=" + "AIzaSyCD3_5vFwy-QFyFsomsi-WMxUUUcW5TtQQ";
+                                    String url = "https://maps.googleapis.com/maps/api/directions/json?origin="+newmark.getPosition().latitude+","+newmark.getPosition().longitude+"&destination="+lastmark.getPosition().latitude+","+lastmark.getPosition().longitude+ "&key=" + R.string.google_api_key;
                                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                                     //polylinetemp.remove();
                                     StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>()
@@ -394,11 +395,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         String polyline = ""+((JSONObject)((JSONObject)jSteps.get(k)).get("polyline")).get("points");
                         Log.i(TAG,""+polyline);
                         List<LatLng> list = PolyUtil.decode(polyline);
-                        //polylinetemp = mMap.addPolyline(new PolylineOptions().addAll(list).color(Color.BLUE).width(10));
+                        polylinetemp = mMap.addPolyline(new PolylineOptions().addAll(list).color(Color.BLUE).width(10));
                     }
                 }
             }
-
         }
         catch (JSONException e)
         {
