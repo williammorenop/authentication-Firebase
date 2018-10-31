@@ -292,7 +292,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             newmark.getPosition().longitude, position.latitude, position.longitude)) + " Km");
 //////////////////PETICION RUTA
                                     //String url = "https://maps.googleapis.com/maps/api/directions/json?origin="+newmark.getPosition().latitude+","+newmark.getPosition().longitude+"&destination="+lastmark.getPosition().latitude+","+lastmark.getPosition().longitude+ "&key=" + "AIzaSyCD3_5vFwy-QFyFsomsi-WMxUUUcW5TtQQ";
-                                    String url = "https://maps.googleapis.com/maps/api/directions/json?origin="+newmark.getPosition().latitude+","+newmark.getPosition().longitude+"&destination="+lastmark.getPosition().latitude+","+lastmark.getPosition().longitude+ "&key=" + R.string.google_api_key;
+                                    Log.i(TAG,getString(R.string.google_api_key));
+                                    Log.i(TAG,getString(R.string.google_maps_key));
+                                    String url = "https://maps.googleapis.com/maps/api/directions/json?origin="+newmark.getPosition().latitude+","+newmark.getPosition().longitude+"&destination="+lastmark.getPosition().latitude+","+lastmark.getPosition().longitude+ "&key=" + getString(R.string.google_maps_key);
                                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                                     //polylinetemp.remove();
                                     StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>()
