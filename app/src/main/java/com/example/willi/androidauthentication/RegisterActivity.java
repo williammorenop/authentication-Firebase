@@ -43,9 +43,7 @@ public class RegisterActivity extends AppCompatActivity
         mPassword = findViewById(R.id.contrasena);
         mConfirmPassword = findViewById(R.id.recontrasena);
         mRegister = findViewById(R.id.register);
-
         mAuth = FirebaseAuth.getInstance();
-
         mRegister.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -81,7 +79,6 @@ public class RegisterActivity extends AppCompatActivity
                                             upcrb.setDisplayName(mUserName.getText().toString() + " " + mUserLastName.getText().toString());
                                             //upcrb.setPhotoUri(Uri.parse("path/to/pic"));//fake uri, real one coming soon
                                             user.updateProfile(upcrb.build());
-                                            //startActivity(new Intent(RegisterActivity.this, LoginSuccessActivity.class)); //o en el listener
                                             startActivity(new Intent(RegisterActivity.this, MapActivity.class)); //o en el listener
                                         }
                                     }
@@ -100,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity
     private boolean isEmailValid(String email)
     {
         boolean isValid = true;
-        if (!email.contains("@") || !email.contains(".") || email.length() < 5)
+        if ((email.length() != 0) && (!email.contains("@") || !email.contains(".") || email.length() < 5))
             isValid = false;
         return isValid;
     }
@@ -109,9 +106,18 @@ public class RegisterActivity extends AppCompatActivity
     {
         boolean valid = true;
         String email = mUser.getText().toString();
-        if (TextUtils.isEmpty(email) || !isEmailValid(email))
+        boolean result = isEmailValid(email);
+        if (TextUtils.isEmpty(email) || result==false)
         {
-            mUser.setError("Requerido.");
+            mUser.setError(null);
+            if (result==false)
+            {
+                mUser.setError("Invalido.");
+            }
+            else
+            {
+                mUser.setError("Requerido.");
+            }
             valid = false;
         }
         else
